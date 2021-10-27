@@ -7,7 +7,8 @@ function autoUpdateIP() {
     (error, response, body)=>{
         if (IP != JSON.parse(body).geoplugin_request){
             IP =JSON.parse(body).geoplugin_request
-            updateCloudflare(IP)
+            updateCloudflare(IP,"966ee69a16ab379b53efa3900f790788","234e363fd0987bd6c8174cff780b2d02")
+            updateCloudflare(IP,"ed309d3fd69d57696f8b7a4fefacb6a3","c085588cb943500974dc8e42716a5a2a")
             //updateDNS(IP)
             console.log("update")
         }
@@ -22,11 +23,11 @@ function updateDNS(IP) {
         });
 }
 
-function updateCloudflare(IP) {
+function updateCloudflare(IP,zones,records) {
     console.log(IP)
     request({
         method: 'PUT',
-        url: 'https://api.cloudflare.com/client/v4/zones/966ee69a16ab379b53efa3900f790788/dns_records/234e363fd0987bd6c8174cff780b2d02',
+        url: `https://api.cloudflare.com/client/v4/zones/${zones}/dns_records/${records}`,
         headers: {
             'Content-Type': 'application/json',
             'X-Auth-Email': 'minhdz117@gmail.com',
