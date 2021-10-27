@@ -8,7 +8,7 @@ function autoUpdateIP() {
         if (IP != JSON.parse(body).geoplugin_request){
             IP =JSON.parse(body).geoplugin_request
             updateCloudflare(IP)
-            updateDNS(IP)
+            //updateDNS(IP)
             console.log("update")
         }
     })
@@ -39,7 +39,7 @@ function updateCloudflare(IP) {
     })
 }
 
-
+autoUpdateIP()
 setInterval(() => {
     autoUpdateIP()
 }, 60*1000);
